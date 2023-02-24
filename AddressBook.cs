@@ -194,6 +194,19 @@ namespace AddressBook_System
                     
             }
         }
+        public void Save()
+        {
+            string path = @"C:\json\Address.json";
+            var jsonInventory = JsonConvert.SerializeObject(contacts, Formatting.Indented);
+            File.WriteAllText(path, jsonInventory);
+        }
+        public void Load()
+        {
+            string path = @"C:\json\Address.json";
+            var json = File.ReadAllText(path);
+            contacts = JsonConvert.DeserializeObject<List<Contact>>(json);
+            Display();
+        }
         public void EditContact()
         {
             Console.WriteLine("Enter FirstName of conatc to edit that contact");
